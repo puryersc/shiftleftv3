@@ -37,7 +37,7 @@ jobs:
       - name: Pull DVWA web application from vulnerables/web-dvwa
         run: |
           docker pull vulnerables/web-dvwa
-          docker save -o dvwa.tar
+          docker save vulnerables/web-dvwa -o dvwa.tar
       - name: Run Shiftleft assessment on saved image
         run: |  
           docker pull checkpoint/shiftleft
