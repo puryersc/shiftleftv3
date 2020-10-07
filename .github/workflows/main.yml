@@ -29,4 +29,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run IAC assessment on Terraform folder
         run: |
-          docker run -v=$(pwd):/tmp/ -e "CHKP_COUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft iac-assessment -p /tmp/terraform/ -r 211561
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft iac-assessment -p /tmp/terraform/ -r 211561
