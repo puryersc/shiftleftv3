@@ -34,11 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Pull DVWA web application from vulnerables/web-dvwa
+      - name: Build from Dockerfile and add some malware xD
         run: |
           docker build . -t badimage
           docker save badimage -o badimage.tar
-      - name: Run Shiftleft assessment on saved image
+      - name: Run Shiftleft assessment on built image
         run: |  
           docker pull checkpoint/shiftleft
           docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/badimage.tar
