@@ -36,12 +36,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Pull DVWA web application from vulnerables/web-dvwa
         run: |
-          docker pull vulnerables/web-dvwa
-          docker save vulnerables/web-dvwa -o dvwa.tar
+          docker build . -t badimage
+          docker save badimage -o badimage.tar
       - name: Run Shiftleft assessment on saved image
         run: |  
           docker pull checkpoint/shiftleft
-          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/dvwa.tar
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/badimage.tar
   Code_Scanner:
     runs-on: ubuntu-latest
     steps:
