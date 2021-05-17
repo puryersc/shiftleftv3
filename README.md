@@ -1,8 +1,6 @@
-# Check Point CloudGuard ShiftLeft integration with Jenkins CICD pipeline: 
+# Check Point CloudGuard ShiftLeft integration with Github Actions CI/CD pipeline: 
 
-## ![header image](warning.jpeg) This demo contains Malware so please do not use in a production environment and Handle with Care
-##.
-##.
+
  
 CloudGuard ShiftLeft CLI tool is a framework that will enable you to access all the various blades that CloudGuard offers quick and easy for integration within your pipeline.
 CloudGuard ShiftLeft will allow you to scan source code, Docker container images and serverless deployment packages, Terraform templates, and more. 
@@ -45,7 +43,7 @@ The image-scan blade will scan Docker container images for security risks and vu
 [![header image](shift.png)](https://www.youtube.com/watch?v=UAZixZ7ddbQ&feature=youtu.be "ShiftLeft")
 
 
-#### Please add your Cloudguard credentials and add them to Jenkins using CHKP_CLOUDGUARD_ID and CHKP_CLOUDGUARD_SECRET
+#### Please add your Cloudguard credentials and to your repository secrets using CHKP_CLOUDGUARD_ID and CHKP_CLOUDGUARD_SECRET
 
 ### The scan result for the source code scan:
 
@@ -156,54 +154,4 @@ Packages Findings:
 			
 ....
 
-```
-### The Terraform scan result:
 
-The Terraform main.tf has a configuration to deploy a S3 bucket and I am using a CloudGuard GSL rule to check for S3 server side encryption:
-
-```
-
-+ ./shiftleft iac-assessment -l "S3Bucket should have encryption.serverSideEncryptionRules" -p ./terraform
-[31mERROR  [0m[06-10-2020 03:36:07.870] test rule name: '' logic: S3Bucket failed with error 
-[
-    {
-        "error": "Syntax failure: <line:1,col:8> found '<EOF>' expecting 'should'",
-        "testedCount": 0,
-        "relevantCount": 0,
-        "nonComplyingCount": -1,
-        "exclusionStats": {
-            "testedCount": 0,
-            "relevantCount": 0,
-            "nonComplyingCount": 0
-        },
-        "entityResults": [],
-        "rule": {
-            "name": "",
-            "severity": "Low",
-            "logic": "S3Bucket",
-            "description": "",
-            "remediation": "",
-            "complianceTag": "",
-            "domain": "",
-            "priority": "",
-            "controlTitle": "",
-            "ruleId": "",
-            "logicHash": "rFr9vjbTWZrisy/p45rlqw",
-            "isDefault": false
-        },
-        "testPassed": false
-    }
-]
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] }
-[Pipeline] // withCredentials
-[Pipeline] }
-[Pipeline] // withEnv
-[Pipeline] }
-[Pipeline] // node
-[Pipeline] End of Pipeline
-ERROR: script returned exit code 1
-Finished: FAILURE
-
-```
