@@ -41,7 +41,7 @@ jobs:
       - name: Run Shiftleft assessment on built image
         run: |  
           docker pull checkpoint/shiftleft
-          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/badimage.tar
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/badimage.tar -e c1c18327-cc61-4753-820e-a4bcf45581fd
   Code_Scanner:
     runs-on: ubuntu-latest
     steps:
@@ -49,5 +49,5 @@ jobs:
       - name: Run SourceGuard scan on code
         run: |
           docker pull checkpoint/shiftleft
-          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft code-scan -s /tmp/
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft code-scan -s /tmp/ -e c1c18327-cc61-4753-820e-a4bcf45581fd
           
