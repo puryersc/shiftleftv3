@@ -24,7 +24,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Pull Check Point Shiftleft image
-        run: docker pull checkpoint/shiftleft
+        run: docker pull checkpoint/shiftleft:latest
 
       # Runs a set of commands using the runners shell
       - name: Run IAC assessment on Terraform folder
