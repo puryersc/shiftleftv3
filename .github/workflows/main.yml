@@ -40,7 +40,7 @@ jobs:
           docker save badimage -o badimage.tar
       - name: Run Shiftleft assessment on built image
         run: |  
-          docker pull checkpoint/shiftleft
+          docker pull checkpoint/shiftleft:latest
           docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/badimage.tar
   Code_Scanner:
     runs-on: ubuntu-latest
@@ -48,6 +48,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run SourceGuard scan on code
         run: |
-          docker pull checkpoint/shiftleft
+          docker pull checkpoint/shiftleft:latest
           docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft code-scan -s /tmp/
           
